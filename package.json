@@ -1,0 +1,15 @@
+{
+  "name": "alexa-storyteller",
+  "version": "1.0.0",
+  "description": "Alexa Storyteller skill lambda.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Hou",
+  "license": "MIT",
+  "dependencies": {
+    "alexa-app": "^4.2.2",
+    "ssml-builder": "^0.4.3"
+  }
+}
