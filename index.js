@@ -45,10 +45,17 @@ alexaApp.launch((request, response) => {
     .shouldEndSession(false);
 });
 
+alexaApp.intent('AMAZON.NextIntent',
+  (request, response) => {
+    console.log(request);
+    readStory(request, response);
+  }
+);
+
 /** Continue the story on any further interaction. */
 alexaApp.intent('AMAZON.FallbackIntent',
   (request, response) => {
-    console.log('fallback');
+    console.log(request);
     readStory(request, response);
   }
 );
@@ -59,13 +66,14 @@ alexaApp.intent('AMAZON.FallbackIntent',
 alexaApp.intent('BeginStoryIntent',
   (request, response) => {
     const slot = request.slots['Story'];
-    const value = request.slot('Story');
-    
+
     let story = slot.resolution().first().id;
+    let value = request.slot('Story');
 
     // Random story:
     if (story < 0) {
       story = STORY_IDS[Math.floor(Math.random() * STORY_IDS.length)];
+      value = 'a story';
     }
 
     console.log(`Beginning story: ${story}`);
